@@ -1,0 +1,10 @@
+C:\Users\JuanFerYuco\source\repos\CACM\CACM\CACM\bin\Debug\netstandard2.0\CACM.deps.json
+C:\Users\JuanFerYuco\source\repos\CACM\CACM\CACM\bin\Debug\netstandard2.0\CACM.dll
+C:\Users\JuanFerYuco\source\repos\CACM\CACM\CACM\bin\Debug\netstandard2.0\CACM.pdb
+C:\Users\JuanFerYuco\source\repos\CACM\CACM\CACM\obj\Debug\netstandard2.0\CACM.csprojAssemblyReference.cache
+C:\Users\JuanFerYuco\source\repos\CACM\CACM\CACM\obj\Debug\netstandard2.0\CACM.csproj.CoreCompileInputs.cache
+C:\Users\JuanFerYuco\source\repos\CACM\CACM\CACM\obj\Debug\netstandard2.0\CACM.AssemblyInfoInputs.cache
+C:\Users\JuanFerYuco\source\repos\CACM\CACM\CACM\obj\Debug\netstandard2.0\CACM.AssemblyInfo.cs
+C:\Users\JuanFerYuco\source\repos\CACM\CACM\CACM\obj\Debug\netstandard2.0\XamlC.stamp
+C:\Users\JuanFerYuco\source\repos\CACM\CACM\CACM\obj\Debug\netstandard2.0\CACM.dll
+C:\Users\JuanFerYuco\source\repos\CACM\CACM\CACM\obj\Debug\netstandard2.0\CACM.pdb
