@@ -10,7 +10,7 @@ namespace CACM
     public class OlvidoPage : ContentPage
     {
         Entry EntryCorreo;
-        public OlvidoPage(string correo)
+        public OlvidoPage()
         {
             NavigationPage.SetHasNavigationBar(this, false);
             var relative = new RelativeLayout
@@ -58,7 +58,7 @@ namespace CACM
                 EntryCorreo
                 }
             };
-            EntryCorreo.Text = correo;
+            
             var Recuperar= new Button
             {
                 Text = "RECUPERAR",

@@ -1,17 +1,21 @@
-﻿using System;
+﻿using CACM.Model;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace CACM
 {
     public class LoginPage : ContentPage
     {
-        private List<Usuario> listUser;
+        private List<clsUsuarios> listUser;
+        Button iniciar;
         Entry emailEntry, passwordEntry;
-        public LoginPage(List<Usuario>ListUsuario)
+        ActivityIndicator activity;
+        public LoginPage(List<clsUsuarios>ListUsuario)
         {
             TapGestureRecognizer tapRecupera = new TapGestureRecognizer();
             TapGestureRecognizer tapCrear = new TapGestureRecognizer();
@@ -39,10 +43,6 @@ namespace CACM
                     Logo
                 }
             };
-            
-            
-           
-
             emailEntry = new Entry
             {
                 Placeholder = "Ingrese su Email",
@@ -83,8 +83,13 @@ namespace CACM
                     passwordEntry
                 }
             };
+            activity = new ActivityIndicator
+            {
+                IsRunning = true,
+                IsVisible = false,
+            };
 
-            var iniciar = new Button
+             iniciar = new Button
             {
                 Text = "Iniciar Sesion",
                 WidthRequest = 300,
@@ -148,6 +153,7 @@ namespace CACM
             stack.Children.Add(logoCac);
             stack.Children.Add(email);
             stack.Children.Add(password);
+            //stack.Children.Add(activity);
             stack.Children.Add(botonIniciar);
             stack.Children.Add(labelsCrear);
             stack.Children.Add(labelsOlvido);
@@ -155,6 +161,8 @@ namespace CACM
                 Constraint.Constant(0));
             Relative.Children.Add(stack, Constraint.Constant(4),
                 Constraint.Constant(100));
+            Relative.Children.Add(activity, Constraint.Constant(150),
+                Constraint.Constant(250));
 
             Content = Relative;
 
@@ -162,8 +170,8 @@ namespace CACM
 
         private async void TapRecupera_Tapped(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(emailEntry.Text)) await DisplayAlert("Alerta", "Usted no ha ingresado el correo", "Ok");
-            else await Navigation.PushAsync(new OlvidoPage(emailEntry.Text));
+            
+            await Navigation.PushAsync(new OlvidoPage());
             
         }
 
@@ -174,25 +182,80 @@ namespace CACM
 
         public async void eventClic(Object sender, EventArgs e)
         {
-            int variable = 0;
+            
+            BlockAndActive();
+            
+            //int variable = 0;
             String stMensaje = String.Empty;
             if (String.IsNullOrEmpty(emailEntry.Text)) stMensaje += "Ingrese Email, ";
             if (String.IsNullOrEmpty(passwordEntry.Text)) stMensaje += "Ingrese Contraseña, ";
-            if (!String.IsNullOrEmpty(stMensaje)) await DisplayAlert("Alerta", stMensaje, "Ok");
-            
-            foreach(Usuario user in listUser)
+            if (!String.IsNullOrEmpty(stMensaje))
             {
-                if (user.stCorreo.Equals(emailEntry.Text) && user.stContraseña.Equals(passwordEntry.Text))
-                {
-                    await Navigation.PushAsync(new ContenidoUsuariosPage(listUser));
-                    Navigation.RemovePage(this);
-                    variable = 1;
-                }
+
+                BlockAndActive();
+                await DisplayAlert("Alerta", stMensaje, "Ok");
+                return;
+            }
+
+            //foreach(Usuario user in listUser)
+            //{
+            //if (user.stCorreo.Equals(emailEntry.Text) && user.stContraseña.Equals(passwordEntry.Text))
+            //{
+
+            //variable = 1;
+            //}
+            //};
+            
+            clsUsuarios clsUsuario = new clsUsuarios
+            {
+                inCodigo = 0,
+                stNombre = ":v",
+                stApellido = ":v",
+                stUsuaImagen = "luego",
+                inPuntuacionMaxima = 0,
+                inTipo = 0,
+                stCorreo = emailEntry.Text,
+                stPassword = passwordEntry.Text
+                
             };
-            if(variable==0) await DisplayAlert("Alerta", "Contraseña o Correo Incorrecta", "Ok");
+            string url = string.Format("{0}", "http://172.16.20.42/ApiCAC//api/Usuarios/validarUsuarios");
+            Iservicios myServices = DependencyService.Get<Iservicios>();
+            string myObject = await myServices.Login(clsUsuario);
+            //string myObject = await myServices.newLogin(url,clsUsuario,Login.Methods.POST,Login.ContentType.JSON);
+            //Boolean resp  = JsonConvert.DeserializeObject<Boolean>(myObject);
+
+            if (myObject == null)
+            {
+                BlockAndActive();
+                
+                return;
+            }
+            if (myObject.Equals("true"))
+            {
+                BlockAndActive();
+                
+                await Navigation.PushAsync(new Mapa());
+                Navigation.RemovePage(this);
+                //mandar a la otra pagin
+            }
+            else
+            {
+                BlockAndActive();
+                await DisplayAlert("Alerta", "Contraseña o Correo Incorrecta", "Ok");
+                return;
+            }
+            //if(variable==0) await DisplayAlert("Alerta", "Contraseña o Correo Incorrecta", "Ok");
 
 
 
+        }
+
+        public  void BlockAndActive()
+        {
+            activity.IsVisible = !activity.IsVisible;
+            emailEntry.IsEnabled = !emailEntry.IsEnabled;
+            passwordEntry.IsEnabled = !passwordEntry.IsEnabled;
+            iniciar.IsEnabled = !iniciar.IsEnabled ;
         }
 
         //public async void eventClicCrearAsync(Object sender, EventArgs e)

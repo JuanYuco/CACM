@@ -9,7 +9,7 @@ namespace CACM
 {
     public class ContenidoUsuariosPage : ContentPage
     {
-        public ContenidoUsuariosPage(List<Usuario> ListUsuario)
+        public ContenidoUsuariosPage(List<clsUsuarios> ListUsuario)
         {
 
 
@@ -23,7 +23,7 @@ namespace CACM
                
             
 
-            ListView userListView = new ListView
+            Xamarin.Forms.ListView userListView = new Xamarin.Forms.ListView
             {
                 ItemsSource = ListUsuario,
                 ItemTemplate = new DataTemplate(() =>

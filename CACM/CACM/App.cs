@@ -10,12 +10,13 @@ namespace CACM
     public class App : Application
     {
 
-        public static List<Usuario> lstUsuarios;
+        public static List<clsUsuarios> lstUsuarios;
         public App()
         {
-            lstUsuarios = new List<Usuario>();
+            lstUsuarios = new List<clsUsuarios>();
 
-            MainPage = new NavigationPage(new LoginPage(lstUsuarios));
+            //MainPage = new NavigationPage(new LoginPage(lstUsuarios));
+            MainPage = new NavigationPage(new Mapa());
             
 
 

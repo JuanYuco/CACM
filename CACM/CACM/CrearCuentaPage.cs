@@ -171,12 +171,8 @@ namespace CACM
                 Constraint.Constant(0));
             Relative.Children.Add(Stack, Constraint.Constant(10),
                 Constraint.Constant(80));
-
-
             Content = Relative;
-
         }
-
         public void eventClicCrear(Object sender, EventArgs e)
         {
             String stMensaje = String.Empty;
@@ -187,19 +183,15 @@ namespace CACM
             if (String.IsNullOrEmpty(CContraseñaEntry.Text)) stMensaje += "Ingrese la verificacion de la contraseña, ";
             if (ContraseñaEntry.Text != CContraseñaEntry.Text) stMensaje += "Las contraseñas no son iguales";
             if (!String.IsNullOrEmpty(stMensaje)) DisplayAlert("Alerta", stMensaje, "Ok");
-
             else
             {
-                Usuario user = new Usuario
+                clsUsuarios user = new clsUsuarios
                 {
-                    stUsuario = NombreEntry.Text,
+                    stNombre = NombreEntry.Text,
                     stApellido = ApellidoEntry.Text,
                     stCorreo = CorreoEntry.Text,
-                    stContraseña = ContraseñaEntry.Text
+                    stPassword = ContraseñaEntry.Text
                 };
-
-                
-
                 App.lstUsuarios.Add(user);
                 DisplayAlert("Alerta", "Se creo su cuenta con exito!", "OK");
 
@@ -209,7 +201,6 @@ namespace CACM
                 ContraseñaEntry.Text = String.Empty;
                 CContraseñaEntry.Text = String.Empty;
             }
-
         }
     }
 }
