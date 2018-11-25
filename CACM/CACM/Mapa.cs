@@ -361,7 +361,7 @@ namespace CACM
                         Type = PinType.Place,
                         Position = position,
                         Label = obclsArtistas.stNombre,
-                        Address = "Descripcion: " + obclsArtistas.stCiudad,
+                        Address = "Ciudad de Nacimiento: " + obclsArtistas.stCiudad+" Tipo de artistas: "+obclsArtistas.clsTipodeArtista.stGenero,
                         BindingContext = AnchorX
 
                     };
@@ -558,6 +558,9 @@ namespace CACM
 
             botonFlora.IsVisible = !botonFlora.IsVisible;
             botonFlora.IsEnabled = !botonFlora.IsEnabled;
+
+            botonCulturas.IsVisible = !botonCulturas.IsVisible;
+            botonCulturas.IsEnabled = !botonCulturas.IsEnabled;
         }
     }
 }
