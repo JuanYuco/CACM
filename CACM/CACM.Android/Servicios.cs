@@ -295,5 +295,37 @@ namespace CACM.Droid
                 throw ew;
             }
         }
+
+
+        public Task<string> crearCuenta(clsUsuarios obclsUsuario)
+        {
+            try
+            {
+                RestClient Cliente = new RestClient("http://192.168.1.71/ApiCAC//api/Usuarios");
+                var Request = new RestRequest("/crearCuenta", Method.POST)
+                {
+                    RequestFormat = DataFormat.Json
+                };
+
+                //string json_response = JsonConvert.SerializeObject(clsUsuario);
+                Request.AddBody(obclsUsuario);
+
+                //Request.AddParameter("email",correo);
+                //r@r.com
+                //Request.AddParameter("password", contraseña);
+                //12345
+
+                var response = Cliente.Execute(Request);
+                
+                string respuesta = JsonConvert.DeserializeObject<string>(response.Content);
+
+                return Task.FromResult(respuesta);
+
+            }
+            catch (Exception ew)
+            {
+                throw ew;
+            }
+        }
     }
 }

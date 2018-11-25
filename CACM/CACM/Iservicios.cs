@@ -11,6 +11,7 @@ namespace CACM
     {
         Task <string> Login(clsUsuarios clsUsuario);//Logueo
         void getData();//TRAER LA INFORMACION DE LOS ESTUDIANTES
+        Task<string> crearCuenta(clsUsuarios obclsUsuario);
         Task<string> newLogin(string url, object request,Methods method,ContentType contentType);
         List<Model.clsDepartamentos> getDepartamentos();
         List<Model.clsHistoria> getHistoria();

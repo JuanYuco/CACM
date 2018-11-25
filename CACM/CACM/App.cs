@@ -16,7 +16,7 @@ namespace CACM
             lstUsuarios = new List<clsUsuarios>();
 
             //MainPage = new NavigationPage(new LoginPage(lstUsuarios));
-            MainPage = new NavigationPage(new Mapa());
+            MainPage = new NavigationPage(new LoginPage(lstUsuarios));
             
 
 

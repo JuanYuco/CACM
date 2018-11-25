@@ -173,7 +173,7 @@ namespace CACM
                 Constraint.Constant(80));
             Content = Relative;
         }
-        public void eventClicCrear(Object sender, EventArgs e)
+        public async void eventClicCrear(Object sender, EventArgs e)
         {
             String stMensaje = String.Empty;
             if (String.IsNullOrEmpty(NombreEntry.Text)) stMensaje += "Ingrese Nombre, ";
@@ -182,9 +182,12 @@ namespace CACM
             if (String.IsNullOrEmpty(ContraseñaEntry.Text)) stMensaje += "Ingrese Contraseña, ";
             if (String.IsNullOrEmpty(CContraseñaEntry.Text)) stMensaje += "Ingrese la verificacion de la contraseña, ";
             if (ContraseñaEntry.Text != CContraseñaEntry.Text) stMensaje += "Las contraseñas no son iguales";
-            if (!String.IsNullOrEmpty(stMensaje)) DisplayAlert("Alerta", stMensaje, "Ok");
-            else
+            if (!String.IsNullOrEmpty(stMensaje))
             {
+                await DisplayAlert("Alerta", stMensaje, "Ok");
+                return;
+            }
+            
                 clsUsuarios user = new clsUsuarios
                 {
                     stNombre = NombreEntry.Text,
@@ -192,15 +195,22 @@ namespace CACM
                     stCorreo = CorreoEntry.Text,
                     stPassword = ContraseñaEntry.Text
                 };
-                App.lstUsuarios.Add(user);
-                DisplayAlert("Alerta", "Se creo su cuenta con exito!", "OK");
-
-                NombreEntry.Text = String.Empty;
-                ApellidoEntry.Text = String.Empty;
-                CorreoEntry.Text = String.Empty;
-                ContraseñaEntry.Text = String.Empty;
-                CContraseñaEntry.Text = String.Empty;
-            }
+                Iservicios myServices = DependencyService.Get<Iservicios>();
+                string respuesta = await myServices.crearCuenta(user);
+                if (respuesta.Equals("true"))
+                {
+                    await DisplayAlert("Alerta", "Ya hay una cuenta con este correo", "Ok");
+                    return;
+                }
+                else if (respuesta.Equals("false"))
+                {
+                    await DisplayAlert("Excelente!!!", "Su cuenta se ha creado con exito", "OK");
+                    NombreEntry.Text = String.Empty;
+                    ApellidoEntry.Text = String.Empty;
+                    CorreoEntry.Text = String.Empty;
+                    ContraseñaEntry.Text = String.Empty;
+                    CContraseñaEntry.Text = String.Empty;
+                }
         }
     }
 }

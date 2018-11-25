@@ -122,7 +122,6 @@ C:\Users\JuanFerYuco\source\repos\CACM\CACM\CACM.Android\obj\Debug\MonoAndroid81
 C:\Users\JuanFerYuco\source\repos\CACM\CACM\CACM.Android\obj\Debug\MonoAndroid81\res\drawable\lobo.png
 C:\Users\JuanFerYuco\source\repos\CACM\CACM\CACM.Android\obj\Debug\MonoAndroid81\res\drawable\flor.png
 C:\Users\JuanFerYuco\source\repos\CACM\CACM\CACM.Android\obj\Debug\MonoAndroid81\res\drawable\nativoamericano.png
-C:\Users\JuanFerYuco\source\repos\CACM\CACM\CACM\bin\Debug\netstandard2.0\CACM.dll
 C:\Users\JuanFerYuco\source\repos\CACM\CACM\CACM.Android\obj\Debug\MonoAndroid81\linksrc\CACM.Android.pdb
 C:\Users\JuanFerYuco\source\repos\CACM\CACM\CACM.Android\obj\Debug\MonoAndroid81\linksrc\mscorlib.pdb
 C:\Users\JuanFerYuco\source\repos\CACM\CACM\CACM.Android\obj\Debug\MonoAndroid81\linksrc\System.Core.pdb
@@ -140,5 +139,4 @@ C:\Users\JuanFerYuco\source\repos\CACM\CACM\CACM.Android\obj\Debug\MonoAndroid81
 C:\Users\JuanFerYuco\source\repos\CACM\CACM\CACM.Android\obj\Debug\MonoAndroid81\linksrc\System.ServiceModel.Internals.pdb
 C:\Users\JuanFerYuco\source\repos\CACM\CACM\CACM.Android\obj\Debug\MonoAndroid81\linksrc\System.Web.Services.pdb
 C:\Users\JuanFerYuco\source\repos\CACM\CACM\CACM.Android\obj\Debug\MonoAndroid81\linksrc\Mono.Security.pdb
-C:\Users\JuanFerYuco\source\repos\CACM\CACM\CACM.Android\bin\Debug\CACM.dll.mdb
 C:\Users\JuanFerYuco\source\repos\CACM\CACM\CACM.Android\obj\Debug\MonoAndroid81\linksrc\CACM.dll.mdb

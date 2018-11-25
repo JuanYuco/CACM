@@ -34,9 +34,9 @@ namespace CACM
                 Source = ImageSource.FromResource("CACM.menu.png")
             };
 
-
             
-             map = new MapWithIconControl( )
+
+            map = new MapWithIconControl( )
             {
                 
                 IsShowingUser = true,
@@ -192,6 +192,8 @@ namespace CACM
             }));
             //Content = stack;
 
+            
+
             relative.Children.Add(botonMenu, Constraint.Constant(2), Constraint.Constant(2));
             relative.Children.Add(botonGeografia, Constraint.Constant(2), Constraint.Constant(48));
             relative.Children.Add(botonHistoria, Constraint.Constant(2), Constraint.Constant(96));
@@ -208,6 +210,12 @@ namespace CACM
             
         }
 
+        private async void Pin_Clicked(object sender, EventArgs e)
+        {
+            Pin objeto = (Pin)sender;
+            await DisplayAlert(objeto.Label,objeto.Address, "ok");
+        }
+
         private void TapCulturas_Tapped(object sender, EventArgs e)
         {
             try
@@ -215,6 +223,7 @@ namespace CACM
                 map.Pins.Clear();
                 Iservicios myServices = DependencyService.Get<Iservicios>();
                 List<Model.clsCulturas> cultura = myServices.getCulturas();
+                
                 foreach (Model.clsCulturas obclsCulturas in cultura)
                 {
                     var position = new Position(Convert.ToDouble(obclsCulturas.stLatitud), Convert.ToDouble(obclsCulturas.stLongitud)); // Latitude, Longitude
@@ -224,11 +233,12 @@ namespace CACM
                         Type = PinType.Place,
                         Position = position,
                         Label = obclsCulturas.stNombre,
-                        Address = "Descripcion: " + obclsCulturas.stDescripcion
+                        Address = "Descripcion: " + obclsCulturas.stDescripcion,
+                        BindingContext = AnchorX
 
                     };
 
-
+                    pin.Clicked += Pin_Clicked;
                     map.Pins.Add(pin);
                 }
                 trueorfalse();
@@ -255,11 +265,12 @@ namespace CACM
                         Type = PinType.Place,
                         Position = position,
                         Label = obclsFlora.stNombre,
-                        Address = "Descripcion: " + obclsFlora.stDescripcion
+                        Address = "Descripcion: " + obclsFlora.stDescripcion,
+                        BindingContext = AnchorX
 
                     };
 
-
+                    pin.Clicked += Pin_Clicked;
                     map.Pins.Add(pin);
                 }
                 trueorfalse();
@@ -286,11 +297,12 @@ namespace CACM
                         Type = PinType.Place,
                         Position = position,
                         Label = obclsFaunaxDepartamento.obclsFauna.stNombre,
-                        Address = "Descripcion: " + obclsFaunaxDepartamento.stDescripcion
+                        Address = "Descripcion: " + obclsFaunaxDepartamento.stDescripcion,
+                        BindingContext = AnchorX
 
                     };
 
-
+                    pin.Clicked += Pin_Clicked;
                     map.Pins.Add(pin);
                 }
                 trueorfalse();
@@ -317,11 +329,12 @@ namespace CACM
                         Type = PinType.Place,
                         Position = position,
                         Label = obclsEquipo.stNombre,
-                        Address = "Descripcion: " + obclsEquipo.stDescripcion
+                        Address = "Descripcion: " + obclsEquipo.stDescripcion,
+                        BindingContext = AnchorX
 
                     };
 
-
+                    pin.Clicked += Pin_Clicked;
                     map.Pins.Add(pin);
                 }
                 trueorfalse();
@@ -348,11 +361,12 @@ namespace CACM
                         Type = PinType.Place,
                         Position = position,
                         Label = obclsArtistas.stNombre,
-                        Address = "Descripcion: " + obclsArtistas.stCiudad
+                        Address = "Descripcion: " + obclsArtistas.stCiudad,
+                        BindingContext = AnchorX
 
                     };
 
-
+                    pin.Clicked += Pin_Clicked;
                     map.Pins.Add(pin);
                 }
                 trueorfalse();
@@ -379,11 +393,12 @@ namespace CACM
                         Type = PinType.Place,
                         Position = position,
                         Label = obclsMusica.stNombre,
-                        Address = "Descripcion: " + obclsMusica.stDescripcion
+                        Address = "Descripcion: " + obclsMusica.stDescripcion,
+                        BindingContext = AnchorX
 
                     };
 
-
+                    pin.Clicked += Pin_Clicked;
                     map.Pins.Add(pin);
                 }
                 trueorfalse();
@@ -410,11 +425,12 @@ namespace CACM
                         Type = PinType.Place,
                         Position = position,
                         Label = obclsGastronomia.stNombre,
-                        Address = "Descripcion: " + obclsGastronomia.stDescripcion
+                        Address = "Descripcion: " + obclsGastronomia.stDescripcion,
+                        BindingContext = AnchorX
 
                     };
 
-
+                    pin.Clicked += Pin_Clicked;
                     map.Pins.Add(pin);
                 }
                 trueorfalse();
@@ -442,11 +458,12 @@ namespace CACM
                         Type = PinType.Place,
                         Position = position,
                         Label = obclsHistoria.stNombre,
-                        Address = "Descripción: " + obclsHistoria.stDescripcion
+                        Address = "Descripción: " + obclsHistoria.stDescripcion,
+                        BindingContext = AnchorX
 
                     };
 
-
+                    pin.Clicked+=Pin_Clicked;
                     map.Pins.Add(pin);
                 }
 
@@ -460,11 +477,12 @@ namespace CACM
                         Type = PinType.Place,
                         Position = position,
                         Label = obclsPersonajes.stNombre,
-                        Address = "Descripción: " + obclsPersonajes.stDescripcion
+                        Address = "Descripción: " + obclsPersonajes.stDescripcion,
+                         BindingContext = AnchorX
 
-                    };
+                     };
 
-                    
+                    pin.Clicked += Pin_Clicked;
                     map.Pins.Add(pin);
                 }
 
@@ -492,11 +510,12 @@ namespace CACM
                         Type = PinType.Place,
                         Position = position,
                         Label = obclsDepartamentos.stNombre,
-                        Address = "Capital: " + obclsDepartamentos.stCapital
+                        Address = "Capital: " + obclsDepartamentos.stCapital,
+                        BindingContext = AnchorX
 
                     };
 
-                   
+                    pin.Clicked += Pin_Clicked;
                     map.Pins.Add(pin);
                     map.Icon = "https://images.vexels.com/media/users/3/153168/isolated/preview/ce53e14c82752a3fa9a2940b94518fb9-icono-de-la-escuela-globo-geograf-a-by-vexels.png";
                 }
